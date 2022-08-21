@@ -1,4 +1,8 @@
 import Head from "next/head";
+import Layout from "../components/Layout";
+
+import ProductItem from "../components/ProductItem";
+import data from "../utils/data";
 
 export default function Home() {
   return (
@@ -9,8 +13,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="text-3xl p-32 text-red-100">Hello next js</h1>
-      <h2 className="ml-10">yo yo</h2>
+      <Layout title={"Home Page"}>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {data.products.map((product) => (
+            <ProductItem product={product} key={product.slug}></ProductItem>
+          ))}
+        </div>
+      </Layout>
     </div>
   );
 }
