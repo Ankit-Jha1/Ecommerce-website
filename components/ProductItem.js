@@ -3,28 +3,30 @@ import Link from "next/link";
 
 export default function ProductItem({ product }) {
   return (
-    <div className="card">
-      <Link href={`/product/${product.slug}`}>
+    <div className="card ml-5 mr-5 h-auto">
+      <Link href={`/product/${product.id}`}>
         <a>
           <img
             src={product.image}
-            alt={product.name}
-            className="rounded shadow h-[300px] justify-center items-center"
+            alt={product.title}
+            className="rounded shadow h-[400px] justify-center items-center"
           />
         </a>
       </Link>
       <div className="flex flex-col items-center justify-center p-5">
-        <Link href={`/product/${product.slug}`}>
+        <Link href={`/product/${product.id}`}>
           <a>
-            <h2 className="text-lg">{product.name}</h2>
+            <h2 className="text-lg">{product.title}</h2>
           </a>
         </Link>
-        <p className="mb-2">{product.brand}</p>
-        <p>₹ {product.price}</p>
+        <p className="mb-2">{product.category}</p>
+        <p>₹ {product.price * 30}</p>
         <div className="relative">
-          <button className="primary-button" type="button">
-            Add to cart
-          </button>
+          <Link href={`/product/${product.id}`}>
+            <button className="primary-button" type="button">
+              Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import ProductItem from "../components/ProductItem";
 import data from "../utils/data";
 
-export default function Home() {
+export default function Home({ products }) {
   return (
     <div>
       <Head>
@@ -15,11 +15,23 @@ export default function Home() {
 
       <Layout title={"Home Page"}>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {data.products.map((product) => (
+          {products.map((product) => (
             <ProductItem product={product} key={product.slug}></ProductItem>
           ))}
         </div>
       </Layout>
     </div>
   );
+}
+
+const url = "https://fakestoreapi.com/products";
+
+export async function getServerSideProps() {
+  const products = await fetch(url).then((res) => res.json());
+
+  return {
+    props: {
+      products,
+    },
+  };
 }
